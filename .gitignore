@@ -1,6 +1,4 @@
 # Terraform State and Locks
-*.tfstate
-*.tfstate.backup
 .terraform/
 *.tfvars
 *.tfvars.json
