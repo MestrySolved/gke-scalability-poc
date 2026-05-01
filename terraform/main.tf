@@ -1,7 +1,8 @@
 # --- Provider & Project Details ---
 provider "google" {
-  project = "your-project-id" # Update with your project ID
-  region  = "asia-south1"
+  project = var.project_id
+  region  = var.region
+  zone    = var.zone
 }
 
 # --- VPC Network (VPC-Native) ---
@@ -30,7 +31,9 @@ resource "google_compute_subnetwork" "gke_subnet" {
 # --- GKE Regional Cluster ---
 resource "google_container_cluster" "primary" {
   name     = "gke-scalability-poc"
-  location = "asia-south1" # Making it Regional (HA)
+  location = var.region  # Using variable instead of hardcoded region
+  ...
+}
 
   # Enabling VPC-Native Networking
   networking_mode = "VPC_NATIVE"
@@ -60,7 +63,7 @@ resource "google_container_cluster" "primary" {
 # --- Managed Node Pool with Autoscaling ---
 resource "google_container_node_pool" "primary_nodes" {
   name       = "autoscaling-node-pool"
-  location   = "asia-south1"
+  location   = var.region
   cluster    = google_container_cluster.primary.name
   node_count = 1
 
