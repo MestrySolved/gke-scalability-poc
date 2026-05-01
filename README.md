@@ -10,6 +10,10 @@ The environment was built with a focus on **High Availability (HA)** and **Secur
 - **VPC-Native Networking:** Utilizing alias IP ranges for efficient routing and security.
 - **Node Pool Isolation:** Dedicated node pools with custom taints/tolerations to separate PoC workloads.
 
+<p align="center">
+  <img src="images/GKE Scalability Architecture.png" alt="GKE Architecture" width="800">
+</p>
+
 ## 🚀 Key Features & Implementation
 - **Horizontal Pod Autoscaling (HPA):** Configured to trigger based on CPU thresholds, ensuring low latency during traffic spikes.
 - **Vertical Pod Autoscaling (VPA):** Implemented to "right-size" container resource requests, eliminating "waste" in idle containers.
